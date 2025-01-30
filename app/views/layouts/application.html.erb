@@ -26,7 +26,7 @@
     <%= yield :head %>
   </head>
 
-  <body class="h-full">
+  <body class="h-full" data-controller="sidebar">
     <%= render "impersonation_sessions/super_admin_bar" if Current.true_user&.super_admin? && show_super_admin_bar? %>
     <%= render "impersonation_sessions/approval_bar" if Current.true_user&.impersonated_support_sessions&.initiated&.any? %>
 
