@@ -1,6 +1,14 @@
 <%= content_for :content do %>
   <div class="flex h-full bg-gray-25">
-    <div class="p-6 pb-20 w-[368px] shrink-0 h-full overflow-y-auto">
+    <%# Mobile menu button %>
+    <button data-action="click->sidebar#toggle" class="md:hidden fixed top-2 left-2 z-50 p-2 rounded-full bg-white shadow-lg">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+
+    <%# Sidebar %>
+    <div data-sidebar-target="panel" class="absolute md:relative md:translate-x-0 transform -translate-x-full transition-transform duration-300 ease-in-out p-6 pb-20 w-[368px] shrink-0 h-full overflow-y-auto bg-gray-25 z-40">
       <% if content_for?(:sidebar) %>
         <%= yield :sidebar %>
       <% else %>
@@ -8,7 +16,8 @@
       <% end %>
     </div>
 
-    <main class="grow px-20 py-6 h-full <%= require_upgrade? ? "relative overflow-hidden" : "overflow-y-auto" %>">
+    <%# Main content %>
+    <main class="grow px-4 md:px-20 py-6 h-full <%= require_upgrade? ? "relative overflow-hidden" : "overflow-y-auto" %>">
       <% if require_upgrade? %>
         <%= render "shared/subscribe_modal" %>
       <% end %>
