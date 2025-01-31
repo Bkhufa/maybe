@@ -52,6 +52,9 @@ module.exports = {
           to: { "stroke-dashoffset": 0 },
         },
       },
+      rotate: {
+        '180': '180deg',
+      },
       typography: (theme) => ({
         DEFAULT: {
           css: {
