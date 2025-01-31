@@ -1,14 +1,15 @@
+<%# layouts/with_sidebar.html.erb %>
 <%= content_for :content do %>
   <div class="flex h-full bg-gray-25">
-    <%# Mobile menu button %>
-    <button data-action="click->sidebar#toggle" class="md:hidden fixed top-2 left-2 z-50 p-2 rounded-full bg-white shadow-lg">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    <%# Toggle button - centered vertically on left edge %>
+    <button data-action="click->sidebar#toggle" class="md:hidden fixed top-1/2 -translate-y-1/2 left-4 z-50 p-3 bg-white rounded-full shadow-md">
+      <svg data-sidebar-target="icon" class="w-6 h-6 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
       </svg>
     </button>
 
-    <%# Sidebar %>
-    <div data-sidebar-target="panel" class="absolute md:relative md:translate-x-0 transform -translate-x-full transition-transform duration-300 ease-in-out p-6 pb-20 w-[368px] shrink-0 h-full overflow-y-auto bg-gray-25 z-40">
+    <%# Sidebar with toggleable visibility %>
+    <div data-sidebar-target="panel" class="fixed md:relative inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition-transform duration-300 w-[368px] shrink-0 h-full bg-gray-25 z-40 overflow-y-auto p-6 pb-20">
       <% if content_for?(:sidebar) %>
         <%= yield :sidebar %>
       <% else %>
@@ -19,7 +20,7 @@
     <%# Main content %>
     <main class="grow px-4 md:px-20 py-6 h-full <%= require_upgrade? ? "relative overflow-hidden" : "overflow-y-auto" %>">
       <% if require_upgrade? %>
-        <%= render "shared/subscribe_modal" %>
+        <%= render "shared/subscribe_odal" %>
       <% end %>
 
       <%= yield %>
